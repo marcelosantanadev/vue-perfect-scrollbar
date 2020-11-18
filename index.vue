@@ -1,5 +1,5 @@
 <template>
-  <section class="ps-container" :is="$props.tagname" @mouseover.once="update" v-on="$listeners">
+  <section ref="psContainer" class="ps-container" :is="$props.tagname" @mouseover.once="update" v-on="$listeners">
     <slot></slot>
   </section>
 </template>
@@ -31,7 +31,9 @@ export default {
   },
   methods: {
     scroll(pos) {
-      this.$el.scrollTop(pos);
+      this.$nextTick(function(){
+        this.$refs.psContainer.scrollTop = pos;
+      });
       this.update();
     },
     update() {
