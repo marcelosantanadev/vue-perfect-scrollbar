@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <button @click="handleScrollTop">Top</button>
     <VuePerfectScrollbar ref="ps" class="scroll-area" :settings="settings" @ps-scroll-y="scrollHandle" tagname="div">
       <!-- <img src="./assets/azusa.jpg" width="1280" height="720" :class="{bigger:sizeChange}"> -->
       <img ref="imgnode" src="./assets/azusa.jpg" width="1280" height="720">
@@ -28,6 +29,9 @@ export default {
   methods: {
     scrollHandle(evt) {
       console.log(evt)
+    },
+    handleScrollTop(){
+      this.$refs.ps.scroll(0);
     }
   },
   mounted() {
